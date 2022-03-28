@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col">
+        <img src="{{ singlePet.image }}" alt="" />
+      </div>
+      <div class="col">
+        <h3>
+          {{ singlePet.name }}
+        </h3>
+        <p>Category: {{ singlePet.category }}</p>
+        <p>Size: {{ singlePet.size_kg }}kg</p>
+        <p>Sex: {{ singlePet.sex == "f" ? "Female" : "Male" }}</p>
+      </div>
+    </div>
+    <p>
+      {{ singlePet.story }}
+    </p>
+  </div>
+  <div class="col-6">
+    <form [formGroup]="petFormGroup" (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter name"
+          name="name"
+          formControlName="name"
+        />
+        <small
+          class="text-danger"
+          *ngIf="petFormGroup.controls['name'].touched && petFormGroup.controls['name'].errors?.['required']"
+          >Name is required</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Contact</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Enter contact info"
+          name="email"
+          formControlName="email"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="petFormGroup.invalid"
+      >
+        Submit Request
+      </button>
+    </form>
+  </div>
+</div>
